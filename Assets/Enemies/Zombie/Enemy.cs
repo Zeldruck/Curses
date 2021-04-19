@@ -20,8 +20,9 @@ public class Enemy : MonoBehaviour
 
     public float deadBodyDispawnTime = 5f;
 
-    public float detectionRange = 5f;
-    public float chasingRange = 2.5f;
+    public float detectionRangeDay = 5f;
+    public float chasingRangeDay = 2.5f;
+    public float chasingRangeNight = 2.5f;
     public float attackRange = 0.7f;
 
     public float chasingSpeed = 2.5f;
@@ -42,19 +43,36 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!isDead)
+        if (!isDead && !isChasing)
         {
             float distance = Vector2.Distance(player.transform.position, transform.position);
 
-            if ((!playerClose && distance <= detectionRange) || (playerClose && distance > detectionRange))
+            if (GameManager.gameManager.isDay)
             {
-                playerClose = !playerClose;
-                animator.SetTrigger("Angry");
-            }
+                if ((!playerClose && distance <= detectionRangeDay) || (playerClose && distance > detectionRangeDay))
+                {
+                    playerClose = !playerClose;
+                    animator.SetTrigger("Angry");
+                }
 
-            if ((!isChasing && distance <= chasingRange) || (isChasing && distance > chasingRange))
+                if (!isChasing && distance <= chasingRangeDay)
+                {
+                    isChasing = true;
+                }
+            }
+            else
             {
-                isChasing = !isChasing;
+                AnimatorStateInfo ast = animator.GetCurrentAnimatorStateInfo(0);
+                if (!ast.IsName("Zombie_Angry_Idle"))
+                {
+                    playerClose = true;
+                    animator.SetTrigger("Angry");
+                }
+
+                if (playerClose && !isChasing && distance <= chasingRangeNight)
+                {
+                    isChasing = true;
+                }
             }
         }
     }
@@ -68,10 +86,6 @@ public class Enemy : MonoBehaviour
             animator.SetFloat("Speed", direction.normalized.magnitude);
 
             rb.MovePosition(rb.position + direction.normalized * chasingSpeed * Time.fixedDeltaTime);
-        }
-        else if (!isChasing && animator.GetFloat("Speed") != 0f)
-        {
-            animator.SetFloat("Speed", 0f);
         }
     }
 
@@ -127,11 +141,12 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRangeDay);
+        Gizmos.DrawWireSphere(transform.position, chasingRangeDay);
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, chasingRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, chasingRangeNight);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);

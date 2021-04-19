@@ -165,5 +165,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  health: 0
   forcePushBack: 20
+  deadBodyDispawnTime: 5
+  detectionRangeDay: 3.5
+  chasingRangeDay: 2.5
+  chasingRangeNight: 5
+  attackRange: 0.7
+  chasingSpeed: 1
