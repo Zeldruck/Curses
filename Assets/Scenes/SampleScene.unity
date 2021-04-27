@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70971166ebb9e14ea612729348af1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDay: 1
+  isDay: 0
 --- !u!4 &1775472043
 Transform:
   m_ObjectHideFlags: 0

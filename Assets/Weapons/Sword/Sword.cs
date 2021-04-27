@@ -35,6 +35,7 @@ public class Sword : MeleeWeaponClass
         if (hitTransform == null)
             return;
 
+        Gizmos.color = Color.white;
         Gizmos.DrawWireCube(hitTransform.position, hitradius);
     }
 }
