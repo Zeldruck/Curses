@@ -18,11 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float spriteTuenLerpSpeed;
 
     [Header("Weapon")]
-    public WeaponClass wShoot;
     [SerializeField] private List<WeaponClass> weapons;
     private int indexWeapon = 0;
     [SerializeField] private GameObject weapon;
-    [SerializeField] private Transform shootTransform;
     [SerializeField] private float offset;
     [SerializeField] private float weaponLerpSpeed;
 

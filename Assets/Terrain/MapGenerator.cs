@@ -150,13 +150,13 @@ public class MapGenerator : MonoBehaviour
 
             for (int y = 0; y < mapHeight; y++)
             {
-                if (y % 2 > 0)
-                    continue;
+                //if (y % 2 > 0)
+                    //continue;
 
                 for (int x = 0; x < mapWidth; x++)
                 {
-                    if (x % 2 > 0)
-                        continue;
+                    //if (x % 2 > 0)
+                        //continue;
 
                     float currentHeight = noiseMap[x, y];
 
@@ -164,7 +164,7 @@ public class MapGenerator : MonoBehaviour
                     {
                         if (currentHeight <= regions[i].height)
                         {
-                            Vector3Int currentPos = tilemap.LocalToCell(new Vector3(x, y, textureRenderer.transform.position.z));
+                            Vector3Int currentPos = tilemap.LocalToCell(new Vector3(x * 4, y * 4, textureRenderer.transform.position.z));
                             tilemap.SetTile(currentPos, regions[i].tileStr.tiles[0]);
                             break;
                         }
@@ -188,13 +188,13 @@ public class MapGenerator : MonoBehaviour
 
         for (int y = 0; y < mapHeight; y++)
         {
-            if (y % 2 > 0)
-                continue;
+            //if (y % 2 > 0)
+                //continue;
 
             for (int x = 0; x < mapWidth; x++)
             {
-                if (x % 2 > 0)
-                    continue;
+                //if (x % 2 > 0)
+                    //continue;
 
                 if (applyGradientNoise)
                 { 

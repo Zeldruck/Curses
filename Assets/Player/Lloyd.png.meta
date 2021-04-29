@@ -1,25 +1,34 @@
 fileFormatVersion: 2
-guid: bc3b004c72a20c44fb3eed40ee53ca6f
+guid: 060590a93ba988c4fa36defee513d752
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1516525688033061332
-    second: curtis_Idle_Walking_0
+      213: 335587566129445416
+    second: Lloyd_0
   - first:
-      213: 2204033732351289419
-    second: curtis_Idle_Walking_1
+      213: -3472223593655374306
+    second: Lloyd_1
   - first:
-      213: 1240220709783430516
-    second: curtis_Idle_Walking_2
+      213: 5937994144315601717
+    second: Lloyd_2
   - first:
-      213: -6241692245649487262
-    second: curtis_Idle_Walking_3
+      213: 2666102655117899487
+    second: Lloyd_3
   - first:
-      213: -2749504650098110631
-    second: curtis_Idle_Walking_4
+      213: -3202662030462925300
+    second: Lloyd_4
   - first:
-      213: -6240959877142550914
-    second: curtis_Idle_Walking_5
+      213: 5988223430588897027
+    second: Lloyd_5
+  - first:
+      213: 5616030264490214582
+    second: Lloyd_6
+  - first:
+      213: 9160190011051352345
+    second: Lloyd_7
+  - first:
+      213: -5984530344123803803
+    second: Lloyd_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: curtis_Idle_Walking_0
+      name: Lloyd_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 112
-        width: 60
-        height: 74
+        x: 2
+        y: 70
+        width: 25
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d927ff0418cb0510800000000000000
-      internalID: 1516525688033061332
+      spriteID: 82afe260d1f38a400800000000000000
+      internalID: 335587566129445416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: curtis_Idle_Walking_1
+      name: Lloyd_1
       rect:
         serializedVersion: 2
-        x: 88
-        y: 112
-        width: 60
-        height: 78
+        x: 30
+        y: 70
+        width: 25
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b48e6c9800d469e10800000000000000
-      internalID: 2204033732351289419
+      spriteID: e1ee077c90f20dfc0800000000000000
+      internalID: -3472223593655374306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: curtis_Idle_Walking_2
+      name: Lloyd_2
       rect:
         serializedVersion: 2
-        x: 158
-        y: 112
-        width: 60
-        height: 74
+        x: 59
+        y: 70
+        width: 25
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47569b12a26263110800000000000000
-      internalID: 1240220709783430516
+      spriteID: 533f742a63ef76250800000000000000
+      internalID: 5937994144315601717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: curtis_Idle_Walking_3
+      name: Lloyd_3
       rect:
         serializedVersion: 2
-        x: 17
-        y: 10
-        width: 67
-        height: 74
+        x: 89
+        y: 70
+        width: 25
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,20 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26a80c4f8fd0169a0800000000000000
-      internalID: -6241692245649487262
+      spriteID: fd6370d3d36eff420800000000000000
+      internalID: 2666102655117899487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: curtis_Idle_Walking_4
+      name: Lloyd_4
       rect:
         serializedVersion: 2
-        x: 95
-        y: 10
-        width: 67
-        height: 67
+        x: 2
+        y: 34
+        width: 24
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +228,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95f0e96961cc7d9d0800000000000000
-      internalID: -2749504650098110631
+      spriteID: c0640aa0adbdd83d0800000000000000
+      internalID: -3202662030462925300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: curtis_Idle_Walking_5
+      name: Lloyd_5
       rect:
         serializedVersion: 2
-        x: 172
-        y: 10
-        width: 64
-        height: 74
+        x: 30
+        y: 34
+        width: 24
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,8 +249,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e76e379ce08a369a0800000000000000
-      internalID: -6240959877142550914
+      spriteID: 3071cefab717a1350800000000000000
+      internalID: 5988223430588897027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lloyd_6
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 34
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b448c245c520fd40800000000000000
+      internalID: 5616030264490214582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lloyd_7
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 34
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9112cc348488f1f70800000000000000
+      internalID: 9160190011051352345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lloyd_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 3
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56754f20c5da2fca0800000000000000
+      internalID: -5984530344123803803
       vertices: []
       indices: 
       edges: []
