@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 2edc55cce2f58b84498b9311922c1a4e
+guid: 6090ff5cfaaff2d45bec5b30fb9c78ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2869598591142837679
-    second: Revolver_1
+      213: 1372335161102834277
+    second: Dragon_0
   - first:
-      213: -6938344202705223565
-    second: Revolver_3
+      213: 7236858470366593164
+    second: Dragon_1
   - first:
-      213: -8660396610530198205
-    second: Revolver_4
+      213: 5967068118830826598
+    second: Dragon_2
+  - first:
+      213: -6818290705752391711
+    second: Dragon_3
+  - first:
+      213: -5048749159071775346
+    second: Dragon_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -46,7 +52,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -112,64 +118,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Revolver_1
+      name: Dragon_0
       rect:
         serializedVersion: 2
-        x: 158
-        y: 8
-        width: 188
-        height: 88
+        x: 0
+        y: 90
+        width: 54
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fadb70107bcd2d720800000000000000
-      internalID: 2869598591142837679
+      spriteID: 56a105ede838b0310800000000000000
+      internalID: 1372335161102834277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Revolver_3
+      name: Dragon_1
       rect:
         serializedVersion: 2
-        x: 17
-        y: 8
-        width: 122
-        height: 88
+        x: 54
+        y: 90
+        width: 54
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3704d5465bc06bf90800000000000000
-      internalID: -6938344202705223565
+      spriteID: c804affaf6c7e6460800000000000000
+      internalID: 7236858470366593164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Revolver_4
+      name: Dragon_2
       rect:
         serializedVersion: 2
-        x: 359
-        y: 8
-        width: 167
-        height: 88
+        x: 0
+        y: 45
+        width: 54
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34db95fda2710d780800000000000000
-      internalID: -8660396610530198205
+      spriteID: 6644875d6d84fc250800000000000000
+      internalID: 5967068118830826598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dragon_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 45
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eff74c5ab09061a0800000000000000
+      internalID: -6818290705752391711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dragon_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e858975a36d3fe9b0800000000000000
+      internalID: -5048749159071775346
       vertices: []
       indices: 
       edges: []
@@ -177,7 +225,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dd37ecc4d7b235b4fa0d2bbf9baded4f
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

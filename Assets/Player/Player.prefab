@@ -345,7 +345,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2949567486875019956
@@ -589,9 +589,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4762243612517298906}
     m_Modifications:
+    - target: {fileID: 716024186235023205, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4237990983500101320, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237990983500101320, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237990983500101320, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4237990983500101320, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
       propertyPath: m_LocalPosition.x
@@ -640,7 +652,11 @@ PrefabInstance:
     - target: {fileID: 4237990983500101327, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
       propertyPath: shootTransform
       value: 
-      objectReference: {fileID: 7951055231849925418}
+      objectReference: {fileID: 3929579443577573683}
+    - target: {fileID: 8743024202703230731, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
 --- !u!4 &2949567486273531669 stripped
@@ -659,6 +675,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0991ec309a883488e8961cf58d8c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3929579443577573683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2645317185830553838, guid: 5cb2db1815334cd43ab377d750146197, type: 3}
+  m_PrefabInstance: {fileID: 1314671038809037277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2042547985823902683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -666,6 +687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4762243612517298906}
     m_Modifications:
+    - target: {fileID: 1307691299326119527, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3798344909121805309, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -680,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3798344909121805309, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.9198532
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3798344909121805309, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -713,6 +738,10 @@ PrefabInstance:
     - target: {fileID: 3798344909121805310, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
       propertyPath: m_Name
       value: Pickaxe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798344909121805310, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
@@ -754,6 +783,10 @@ PrefabInstance:
     - target: {fileID: 7372205610216106757, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372205610216106757, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7495216837567420550, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
       propertyPath: child
@@ -817,11 +850,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
---- !u!4 &612040100995523749 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8186116619126730675, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
-  m_PrefabInstance: {fileID: 8783297506589641494}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1288265387013706640 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7495216837567420550, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
@@ -833,3 +861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27863c74d420084a9bcf5fc52586ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &612040100995523749 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8186116619126730675, guid: 247a6ee4217cb1c409fe7baf68b77c65, type: 3}
+  m_PrefabInstance: {fileID: 8783297506589641494}
+  m_PrefabAsset: {fileID: 0}
