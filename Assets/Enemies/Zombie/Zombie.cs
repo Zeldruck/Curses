@@ -48,7 +48,8 @@ public class Zombie : Enemy
     {
         if (!isDead && isChasing)
         {
-            Vector2 direction = player.transform.position - transform.position;
+            direction = player.transform.position - transform.position;
+            Flip();
 
             animator.SetFloat("Speed", direction.normalized.magnitude);
 
@@ -60,16 +61,30 @@ public class Zombie : Enemy
     {
         // Push Back
         Vector2 nVec = (transform.position - player.transform.position).normalized;
-        rb.AddForce(nVec * forcePushBack * (isChasing ? stats.speed : 1f));
+        rb.AddForce(nVec * forcePushBack * (isChasing ? stats.speed * 2f : 1f));
 
         base.TakeDamage(damage);
+
+        if (!isChasing)
+            isChasing = true;
     }
 
     public override void TakeDamage(int damage, GameObject bullet)
     {
         // Push Back
-        rb.AddForce(bullet.transform.right * forcePushBack * (isChasing ? stats.speed : 1f));
+        rb.AddForce(bullet.transform.right * forcePushBack * (isChasing ? stats.speed * 2f : 1f));
 
         base.TakeDamage(damage, bullet);
+
+        if (!isChasing)
+            isChasing = true;
+    }
+
+    protected override IEnumerator Die()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        animator.SetTrigger("Death");
+
+        return base.Die();
     }
 }

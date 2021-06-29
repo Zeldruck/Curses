@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -8333322031561149830}
   - component: {fileID: 258757628047656034}
   - component: {fileID: -5934758977032108619}
-  - component: {fileID: -6190506800859998441}
-  m_Layer: 0
+  - component: {fileID: 4305726232740608312}
+  m_Layer: 6
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,9 +29,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258757628047656045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.27, y: 0.28, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7849321083597064882}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,12 +104,16 @@ MonoBehaviour:
     health: 0
     damage: 50
     speed: 1.5
-  forcePushBack: 5
+    attackRate: 2
+  forcePushBack: 0
   deadBodyDispawnTime: 5
   detectionRangeDay: 5
-  chasingRangeDay: 2.5
-  chasingRangeNight: 2.5
-  attackRange: 0.7
+  chasingRangeDay: 10
+  chasingRangeNight: 0
+  attackRange: 5
+  fireballSpawnPoint: {fileID: 7849321083597064882}
+  fireBallPrefab: {fileID: 8129870759948319611, guid: 460f6f2e29ba2794ab898cf0f33f4cbb, type: 3}
+  fireBallSpeed: 5
 --- !u!95 &258757628047656034
 Animator:
   serializedVersion: 3
@@ -149,8 +154,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-6190506800859998441
-BoxCollider2D:
+--- !u!70 &4305726232740608312
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,19 +164,39 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.002218306, y: 0.0099824}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.54, y: 0.45}
-    newSize: {x: 0.54, y: 0.45}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.33147883, y: 0.3102464}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.009387692, y: 0.0068157315}
+  m_Size: {x: 0.14758436, y: 0.26964724}
+  m_Direction: 0
+--- !u!1 &2024847958070431218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7849321083597064882}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7849321083597064882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024847958070431218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.202, y: 0.035, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 258757628047656032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

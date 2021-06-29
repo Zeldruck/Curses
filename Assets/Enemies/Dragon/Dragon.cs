@@ -5,55 +5,96 @@ using UnityEngine;
 public class Dragon : Enemy
 {
     private bool isChasing = false;
-    private bool playerClose = false;
+
+    [Header("Attack")]
+    private bool isAttacking = false;
+    private bool canLaunchFireball = false;
+    [SerializeField] private Transform fireballSpawnPoint;
+    [SerializeField] private GameObject fireBallPrefab;
+    [SerializeField] private float fireBallSpeed = 5f;
 
     // Update is called once per frame
     void Update()
     {
-        if (!isDead && !isChasing)
+        if (!isDead)
         {
             float distance = Vector2.Distance(player.transform.position, transform.position);
 
-            if (GameManager.gameManager.isDay)
+            if (!isChasing && distance <= chasingRangeDay)
             {
-                if ((!playerClose && distance <= detectionRangeDay) || (playerClose && distance > detectionRangeDay))
-                {
-                    playerClose = !playerClose;
-                    //animator.SetTrigger("Angry");
-                }
-
-                if (!isChasing && distance <= chasingRangeDay)
-                {
-                    isChasing = true;
-                }
+                isChasing = true;
             }
-            else
+            else if (isChasing && distance > chasingRangeDay)
             {
-                /*AnimatorStateInfo ast = animator.GetCurrentAnimatorStateInfo(0);
-                if (!ast.IsName("Zombie_Angry_Idle"))
-                {
-                    playerClose = true;
-                    animator.SetTrigger("Angry");
-                }*/
+                isChasing = false;
+            }
 
-                if (playerClose && !isChasing && distance <= chasingRangeNight)
-                {
-                    isChasing = true;
-                }
+            if (isChasing && !isAttacking && distance <= attackRange && timerAttack <= 0f)
+            {
+                StartAttack();
+            }
+            else if (timerAttack > 0f)
+            {
+                timerAttack -= Time.deltaTime;
             }
         }
     }
 
     private void FixedUpdate()
     {
-        if (!isDead && isChasing)
+        if (!isDead && isChasing && !isAttacking)
         {
-            Vector2 direction = player.transform.position - transform.position;
-
-            //animator.SetFloat("Speed", direction.normalized.magnitude);
+            direction = player.transform.position - transform.position;
+            Flip();
 
             rb.MovePosition(rb.position + direction.normalized * stats.speed * Time.fixedDeltaTime);
         }
+    }
+
+    private void StartAttack()
+    {
+        isAttacking = true;
+        animator.SetTrigger("Attack");
+    }
+
+    private void CreateFireball()
+    {
+        StartCoroutine(IELaunchFireball());
+    }
+
+    private void LauchFireball()
+    {
+        canLaunchFireball = true;
+    }
+
+    private IEnumerator IELaunchFireball()
+    {
+        GameObject fireball = Instantiate(fireBallPrefab, fireballSpawnPoint.position, Quaternion.identity);
+
+        while (!canLaunchFireball)
+        {
+            Vector3 dirAngle = (player.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(dirAngle.y, dirAngle.x) * Mathf.Rad2Deg;
+            fireball.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            yield return null;
+
+            if (isDead)
+            {
+                Destroy(fireball);
+                canLaunchFireball = true;
+            }
+        }
+
+        fireball.GetComponent<Rigidbody2D>().velocity = (player.transform.position - fireball.transform.position).normalized * fireBallSpeed;
+        Destroy(fireball, 3f);
+    }
+
+    private void AttackEnd()
+    {
+        isAttacking = false;
+        canLaunchFireball = false;
+        timerAttack = stats.attackRate;
     }
 
     public override void TakeDamage(int damage)
@@ -71,5 +112,13 @@ public class Dragon : Enemy
         rb.AddForce(bullet.transform.right * forcePushBack * (isChasing ? stats.speed : 1f));
 
         base.TakeDamage(damage, bullet);
+    }
+
+    protected override IEnumerator Die()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        animator.SetTrigger("Death");
+
+        return base.Die();
     }
 }

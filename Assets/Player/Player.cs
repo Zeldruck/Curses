@@ -121,6 +121,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Projectile"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
     /*private void WeaponAttackSpecial()
     {
         GameObject nBullet = Instantiate(bulletPrefab, weapon.transform.position, weapon.transform.rotation);

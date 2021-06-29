@@ -9,6 +9,8 @@ public struct Stats
     public int health;
     public int damage;
     public float speed;
+    [Space]
+    public float attackRate;
 }
 
 public class Enemy : MonoBehaviour
@@ -18,8 +20,11 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer spr;
     protected Player player;
 
+    protected Vector2 direction;
+
+    protected float timerAttack = 0f;
+
     protected bool isDead = false;
-    
 
     public Stats stats;
 
@@ -42,12 +47,23 @@ public class Enemy : MonoBehaviour
         stats.health = stats.maxHealth;
     }
 
+    protected void Flip()
+    {
+        float angle = Vector2.SignedAngle(transform.right, direction.normalized);
+
+        if (transform.localScale.x < 0f && (angle >= 90f || angle <= -90f))
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
+        }
+        else if (transform.localScale.x > 0f && angle < 90f && angle > -90f)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
+        }
+    }
+
     public virtual void TakeDamage(int damage)
     {
         stats.health -= damage;
-
-        // Call Hit animation
-
 
         if (stats.health <= 0)
         {
@@ -59,20 +75,15 @@ public class Enemy : MonoBehaviour
     {
         stats.health -= damage;
 
-        // Call Hit animation
-
-
         if (stats.health <= 0)
         {
             StartCoroutine(Die());
         }
     }
 
-    protected IEnumerator Die()
+    protected virtual IEnumerator Die()
     {
         isDead = true;
-        GetComponent<BoxCollider2D>().enabled = false;
-        animator.SetTrigger("Death");
 
         yield return new WaitForSeconds(deadBodyDispawnTime);
 
@@ -88,7 +99,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void OnDrawGizmos()
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRangeDay);
