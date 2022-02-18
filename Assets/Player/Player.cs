@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private bool isAttacking = false;
     private bool canMove = true;
+    private bool isStunned = false;
 
 
     [SerializeField] private float speed;
@@ -27,7 +28,6 @@ public class Player : MonoBehaviour
     public float mAttackSpeed = 1f;
     public float rAttackSpeed = 1f;
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,10 +37,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        weapons[0].animator.speed = (weapons[0] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
+        if (weapons[0] != null)
+            weapons[0].animator.speed = (weapons[0] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
 
         for (int i = 1; i < weapons.Count; i++)
         {
+            if (weapons[i] == null)
+                continue;
+
             weapons[i].child.SetActive(false);
             weapons[i].animator.speed = (weapons[i] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
         }
@@ -50,7 +54,7 @@ public class Player : MonoBehaviour
     {
         direction = Vector2.zero;
 
-        if (canMove)
+        if (canMove && !isStunned)
         {
             direction.x = Input.GetAxisRaw("Horizontal");
             direction.y = Input.GetAxisRaw("Vertical");
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = transform.position.z;
 
-            if (weapons[indexWeapon].GetType() != typeof(MeleeWeaponClass) || (weapons[indexWeapon].GetType() == typeof(MeleeWeaponClass) && weapons[indexWeapon].canAttack))
+            if (weapons[0].GetType() != typeof(MeleeWeaponClass) || (weapons[0].GetType() == typeof(MeleeWeaponClass) && weapons[0].canAttack))
             {
                 /* Weapon Movement */
                 Vector2 posMouseVec = (mousePosition - transform.position).normalized;
@@ -83,17 +87,13 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && weapons[indexWeapon].canAttack)
-                weapons[indexWeapon].Attack();
+            if (Input.GetMouseButton(0) && weapons[0].canAttack)
+                weapons[0].Attack();
 
-            if (Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
+            /*if (Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
             {
-                weapons[indexWeapon].child.SetActive(false);
-                indexWeapon += (indexWeapon + 1 == weapons.Count ? -indexWeapon : 1);
-                weapons[indexWeapon].child.SetActive(true);
-
-                weapons[indexWeapon].animator.speed = (weapons[indexWeapon] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
-            }
+                SwapWeapon(true);
+            }*/
         }
 
         animator.SetFloat("speed", direction.magnitude);
@@ -101,10 +101,15 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (canMove && !isStunned)
         {
             rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         }
+    }
+
+    public WeaponClass GetWeapon(int index)
+    {
+        return (index >= weapons.Count || index < 0) ? null : weapons[index];
     }
 
     private void RotateSprite(Vector2 mousePosition)
@@ -119,6 +124,65 @@ public class Player : MonoBehaviour
         {
             sr.flipX = true;
         }
+    }
+
+    /*public void SwapWeapon(bool swapLeft)
+    {
+        if (weapons.Count <= 1)
+        {
+            return;
+        }
+
+        weapons[indexWeapon].child.SetActive(false);
+        int direction = swapLeft ? -1 : 1;
+        indexWeapon += (indexWeapon + direction == weapons.Count ? -indexWeapon : direction);
+
+        if (indexWeapon < 0)
+            indexWeapon = weapons.Count - 1;
+
+        weapons[indexWeapon].child.SetActive(true);
+        //weapons[indexWeapon].animator.speed = (weapons[indexWeapon] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
+    }*/
+
+    public void SwapWeapon(int index)
+    {
+        if (index > weapons.Count || index < 0)
+            return;
+
+        weapons[0].child.SetActive(false);
+
+        WeaponClass[] temp = new WeaponClass[weapons.Count];
+
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            temp[i] = weapons[i];
+        }
+        
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            int place = i + weapons.Count - index;
+
+            if (place >= weapons.Count)
+                place = place - weapons.Count;
+
+            weapons[place] = temp[i];
+        }
+
+        weapons[0].child.SetActive(true); 
+    }
+
+    public void Stunt(float duration)
+    {
+        StartCoroutine(IEStunt(duration));
+    }
+
+    private IEnumerator IEStunt(float duration)
+    {
+        isStunned = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isStunned = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

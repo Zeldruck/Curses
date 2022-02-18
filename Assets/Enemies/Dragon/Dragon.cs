@@ -97,26 +97,9 @@ public class Dragon : Enemy
         timerAttack = stats.attackRate;
     }
 
-    public override void TakeDamage(int damage)
-    {
-        // Push Back
-        Vector2 nVec = (transform.position - player.transform.position).normalized;
-        rb.AddForce(nVec * forcePushBack * (isChasing ? stats.speed : 1f));
-
-        base.TakeDamage(damage);
-    }
-
-    public override void TakeDamage(int damage, GameObject bullet)
-    {
-        // Push Back
-        rb.AddForce(bullet.transform.right * forcePushBack * (isChasing ? stats.speed : 1f));
-
-        base.TakeDamage(damage, bullet);
-    }
-
     protected override IEnumerator Die()
     {
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        //GetComponent<CapsuleCollider2D>().enabled = false;
         animator.SetTrigger("Death");
 
         return base.Die();

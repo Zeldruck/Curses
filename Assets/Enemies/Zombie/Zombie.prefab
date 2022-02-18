@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400295753450660583}
   - component: {fileID: 400295753450660582}
   - component: {fileID: 400295753450660581}
-  - component: {fileID: 400295753450660584}
+  - component: {fileID: 4085767118754877878}
   - component: {fileID: 400295753450660580}
   - component: {fileID: 2703004544308926182}
   m_Layer: 6
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 400295753450660578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.59, y: 0.04, z: -1}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7780457822815427869, guid: 405be456cfd565845842e5f51ecc9a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1
   m_LinearDrag: 10
   m_AngularDrag: 10
   m_GravityScale: 0
@@ -106,9 +106,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &400295753450660584
-BoxCollider2D:
+  m_Constraints: 4
+--- !u!70 &4085767118754877878
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,22 +117,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.26, y: 0.31}
-    newSize: {x: 0.26, y: 0.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.26, y: 0.31}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.01889668, y: -0.006516119}
+  m_Size: {x: 0.16225843, y: 0.2969678}
+  m_Direction: 0
 --- !u!95 &400295753450660580
 Animator:
   serializedVersion: 3
@@ -165,11 +155,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 100
+    maxHealth: 500
     health: 0
     damage: 10
-    speed: 1.5
-  forcePushBack: 20
+    speed: 50
+    attackRate: 0
+  forcePushBack: 100
   deadBodyDispawnTime: 5
   detectionRangeDay: 3.5
   chasingRangeDay: 2.5

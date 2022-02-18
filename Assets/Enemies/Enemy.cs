@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 0.7f;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         player = FindObjectOfType<Player>();
         animator = GetComponent<Animator>();
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
         stats.health = stats.maxHealth;
     }
 
-    protected void Flip()
+    protected virtual void Flip()
     {
         float angle = Vector2.SignedAngle(transform.right, direction.normalized);
 
@@ -63,6 +63,8 @@ public class Enemy : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
+        if (isDead) return;
+        
         stats.health -= damage;
 
         if (stats.health <= 0)
@@ -73,6 +75,8 @@ public class Enemy : MonoBehaviour
 
     public virtual void TakeDamage(int damage, GameObject bullet)
     {
+        if (isDead) return;
+        
         stats.health -= damage;
 
         if (stats.health <= 0)
@@ -81,18 +85,26 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public bool IsDead() { return isDead; }
+
     protected virtual IEnumerator Die()
     {
         isDead = true;
 
         yield return new WaitForSeconds(deadBodyDispawnTime);
 
+        DestroyDeadBody();
+    }
+
+    public void DestroyDeadBody()
+    {
+        StopAllCoroutines();
         Destroy(gameObject);
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("Bullet") && !isDead)
         {
             TakeDamage(50, collision.gameObject);
             Destroy(collision.gameObject);
