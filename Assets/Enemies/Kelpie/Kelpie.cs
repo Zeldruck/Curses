@@ -7,17 +7,20 @@ public class Kelpie : Enemy
     private bool isChasing = false;
     private bool isStunned = false;
     
+    [SerializeField] private float chasingRange = 2.5f;
+    [SerializeField] private float attackRange = 0.7f;
+    
     void Update()
     {
         if (!isDead && !isStunned)
         {
             float distance = Vector2.Distance(player.transform.position, transform.position);
 
-            if (!isChasing && distance <= chasingRangeDay)
+            if (!isChasing && distance <= chasingRange)
             {
                 isChasing = true;
             }
-            else if (isChasing && distance > chasingRangeDay)
+            else if (isChasing && distance > chasingRange)
             {
                 isChasing = false;
             }
@@ -86,7 +89,7 @@ public class Kelpie : Enemy
 
         float distance = Vector2.Distance(player.transform.position, transform.position);
 
-        if (!isChasing && distance <= chasingRangeDay)
+        if (!isChasing && distance <= chasingRange)
         {
             isChasing = true;
         }
@@ -97,7 +100,15 @@ public class Kelpie : Enemy
         //GetComponent<CapsuleCollider2D>().enabled = false;
         animator.SetTrigger("Death");
 
-        //return base.Die();
-        yield return null;
+        return base.Die();
+    }
+    
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chasingRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

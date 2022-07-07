@@ -185,14 +185,11 @@ public class Player : MonoBehaviour
         isStunned = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage(int _damage)
     {
-        if (collision.CompareTag("Projectile"))
-        {
-            Destroy(collision.gameObject);
-        }
+        
     }
-
+    
     /*private void WeaponAttackSpecial()
     {
         GameObject nBullet = Instantiate(bulletPrefab, weapon.transform.position, weapon.transform.rotation);

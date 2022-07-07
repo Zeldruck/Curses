@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Druid : Enemy
@@ -8,9 +7,10 @@ public class Druid : Enemy
     private bool isRunningAway = false;
 
     [SerializeField] private float dangerRange = 5f;
-
-    [Space] [Header("Resurection Spell")]
+    
+    [Header("Resurection Spell")]
     [SerializeField] private GameObject skeletonPrefab;
+    [SerializeField] private string[] nonResurectableEnnemies;
     [SerializeField] private float resurectRange = 10f;
     [SerializeField] private float timeCastResurectSpell = 15f;
     private float timerCastResurectSpell = 0f;
@@ -69,7 +69,21 @@ public class Druid : Enemy
 
                         if (enemy != null && enemy.IsDead())
                         {
-                            if (enemy.GetType() != typeof(Giant) && enemy.GetType() != typeof(Dragon) && enemy.GetType() != typeof(Druid_Skeleton) && enemy.GetType() != typeof(Kelpie))
+                            bool isResurectable = true;
+
+                            if (nonResurectableEnnemies != null && nonResurectableEnnemies.Length > 0)
+                            {
+                                foreach (string t in nonResurectableEnnemies)
+                                {
+                                    if (enemy.GetType() == Type.GetType(t))
+                                    {
+                                        isResurectable = false;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (isResurectable)
                             {
                                 ResurectEnemy(enemy);
                                 isCasting = true;
@@ -112,10 +126,8 @@ public class Druid : Enemy
         return base.Die();
     }
 
-    protected override void OnDrawGizmosSelected()
+    protected void OnDrawGizmosSelected()
     {
-        base.OnDrawGizmosSelected();
-        
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, dangerRange);
         

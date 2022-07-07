@@ -31,10 +31,8 @@ public class Enemy : MonoBehaviour
     public float forcePushBack = 5f;
     public float deadBodyDispawnTime = 5f;
 
-    public float detectionRangeDay = 5f;
-    public float chasingRangeDay = 2.5f;
-    public float chasingRangeNight = 2.5f;
-    public float attackRange = 0.7f;
+    public delegate void OnDeath();
+    public event OnDeath onDeath;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -91,6 +89,12 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
 
+        if (onDeath != null)
+        {
+            onDeath();
+            onDeath = null;
+        }
+
         yield return new WaitForSeconds(deadBodyDispawnTime);
 
         DestroyDeadBody();
@@ -109,18 +113,5 @@ public class Enemy : MonoBehaviour
             TakeDamage(50, collision.gameObject);
             Destroy(collision.gameObject);
         }
-    }
-
-    protected virtual void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRangeDay);
-        Gizmos.DrawWireSphere(transform.position, chasingRangeDay);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, chasingRangeNight);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

@@ -6,7 +6,10 @@ public class M_Goblin : Enemy
 {
     private bool isChasing = false;
     private bool isStunned = false;
-
+    
+    [SerializeField] private float chasingRange = 2.5f;
+    [SerializeField] private float attackRange = 0.7f;
+    
     // Update is called once per frame
     void Update()
     {
@@ -14,11 +17,11 @@ public class M_Goblin : Enemy
         {
             float distance = Vector2.Distance(player.transform.position, transform.position);
 
-            if (!isChasing && distance <= chasingRangeDay)
+            if (!isChasing && distance <= chasingRange)
             {
                 isChasing = true;
             }
-            else if (isChasing && distance > chasingRangeDay)
+            else if (isChasing && distance > chasingRange)
             {
                 isChasing = false;
             }
@@ -87,7 +90,7 @@ public class M_Goblin : Enemy
 
         float distance = Vector2.Distance(player.transform.position, transform.position);
 
-        if (!isChasing && distance <= chasingRangeDay)
+        if (!isChasing && distance <= chasingRange)
         {
             isChasing = true;
         }
@@ -99,5 +102,14 @@ public class M_Goblin : Enemy
         animator.SetTrigger("Death");
 
         return base.Die();
+    }
+    
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chasingRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

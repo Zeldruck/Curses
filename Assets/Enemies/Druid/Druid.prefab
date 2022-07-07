@@ -133,6 +133,11 @@ MonoBehaviour:
   attackRange: 0
   dangerRange: 4
   skeletonPrefab: {fileID: 2051320531259020889, guid: f1237c6c1289f244d87819ddf9f32086, type: 3}
+  nonResurectableEnnemies:
+  - Dragon
+  - Druid
+  - Druid_Skeleton
+  - Kelpie
   resurectRange: 8
   timeCastResurectSpell: 15
 --- !u!70 &549743760214333954

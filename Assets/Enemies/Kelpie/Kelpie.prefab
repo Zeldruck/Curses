@@ -159,7 +159,7 @@ MonoBehaviour:
     speed: 50
     attackRate: 0
   forcePushBack: 0
-  deadBodyDispawnTime: 0
+  deadBodyDispawnTime: 5
   detectionRangeDay: 0
   chasingRangeDay: 7.5
   chasingRangeNight: 0

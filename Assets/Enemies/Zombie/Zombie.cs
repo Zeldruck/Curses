@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,11 @@ public class Zombie : Enemy
     private bool isChasing = false;
     private bool isStunned = false;
     private bool playerClose = false;
+    
+    [SerializeField] private float detectionRangeDay = 5f;
+    [SerializeField] private float chasingRangeDay = 2.5f;
+    [SerializeField] private float chasingRangeNight = 2.5f;
+    [SerializeField] private float attackRange = 0.7f;
 
     // Update is called once per frame
     void Update()
@@ -118,5 +124,18 @@ public class Zombie : Enemy
         animator.SetTrigger("Death");
 
         return base.Die();
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRangeDay);
+        Gizmos.DrawWireSphere(transform.position, chasingRangeDay);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, chasingRangeNight);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

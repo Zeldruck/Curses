@@ -12,6 +12,9 @@ public class Giant : Enemy
 
     private Vector3 chargingTarget = Vector3.zero;
     private Coroutine actualChargingCoroutine = null;
+    
+    [SerializeField] private float chasingRange = 2.5f;
+    [SerializeField] private float attackRange = 0.7f;
 
     [Space]
     public float radiusAttack = 1f;
@@ -34,11 +37,11 @@ public class Giant : Enemy
             if (!isCharging && rb.velocity.magnitude > 0f)
                 rb.velocity = Vector2.zero;
 
-            if (!isChasing && distance <= chasingRangeDay)
+            if (!isChasing && distance <= chasingRange)
             {
                 isChasing = true;
             }
-            else if (isChasing && distance > chasingRangeDay)
+            else if (isChasing && distance > chasingRange)
             {
                 isChasing = false;
             }
@@ -216,7 +219,7 @@ public class Giant : Enemy
 
         float distance = Vector2.Distance(player.transform.position, transform.position);
 
-        if (!isChasing && distance <= chasingRangeDay)
+        if (!isChasing && distance <= chasingRange)
         {
             isChasing = true;
         }
@@ -230,10 +233,14 @@ public class Giant : Enemy
         return base.Die();
     }
 
-    protected override void OnDrawGizmosSelected()
+    protected void OnDrawGizmosSelected()
     {
-        base.OnDrawGizmosSelected();
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chasingRange);
 
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position + new Vector3(attackOffset, 0f, 0f) * Mathf.Sign(transform.localScale.x), radiusAttack);
     }
