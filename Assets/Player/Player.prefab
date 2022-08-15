@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 2949567486875019959}
   - component: {fileID: 2949567486875019960}
   - component: {fileID: 2949567486875019961}
+  - component: {fileID: -8936531293806728208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -477,7 +478,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &2949567486875019960
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -506,8 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b23321662657548951b1b0ee391b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  spriteTuenLerpSpeed: 20
+  spriteTurnLerpSpeed: 0
   weapons:
   - {fileID: 2949567486273531666}
   - {fileID: 7427450010445537270}
@@ -518,6 +518,21 @@ MonoBehaviour:
   weaponLerpSpeed: 7
   mAttackSpeed: 1
   rAttackSpeed: 1
+--- !u!114 &-8936531293806728208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2949567486875019956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e5bb64b1a2e2043bf18e85a59bc394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 0
+  accelerationAmount: 0
+  decelerationAmount: 0
 --- !u!1 &2979095735695569496
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
+--- !u!4 &2949567485816827942 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3798344909121805309, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
+  m_PrefabInstance: {fileID: 2042547985823902683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5681217361986680250 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5949021483467955809, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
@@ -758,11 +778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a100920196f0a74c8c523add1705ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2949567485816827942 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3798344909121805309, guid: 739fee84e631ed34c82472b97e0a68ff, type: 3}
-  m_PrefabInstance: {fileID: 2042547985823902683}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5475167753632765762
 PrefabInstance:
   m_ObjectHideFlags: 0

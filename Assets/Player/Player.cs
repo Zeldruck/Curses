@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Vector2 direction;
+    private PlayerMovements movements;
+    
     private Animator animator;
     private SpriteRenderer sr;
     private bool isAttacking = false;
-    private bool canMove = true;
     private bool isStunned = false;
-
-
-    [SerializeField] private float speed;
+    
 
     [Header("Sprite")]
-    [SerializeField] private float spriteTuenLerpSpeed;
+    [SerializeField] private float spriteTurnLerpSpeed;
 
     [Header("Weapon")]
     [SerializeField] private List<WeaponClass> weapons;
@@ -30,7 +27,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        movements = GetComponent<PlayerMovements>();
+        
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -38,7 +36,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         if (weapons[0] != null)
-            weapons[0].animator.speed = (weapons[0] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
+            weapons[0].animator.speed = (weapons[0] as MeleeWeaponClass != null ? mAttackSpeed : rAttackSpeed);
 
         for (int i = 1; i < weapons.Count; i++)
         {
@@ -46,21 +44,16 @@ public class Player : MonoBehaviour
                 continue;
 
             weapons[i].child.SetActive(false);
-            weapons[i].animator.speed = (weapons[i] as MeleeWeaponClass ? mAttackSpeed : rAttackSpeed);
+            weapons[i].animator.speed = (weapons[i] as MeleeWeaponClass != null ? mAttackSpeed : rAttackSpeed);
         }
     }
 
     void Update()
     {
-        direction = Vector2.zero;
-
-        if (canMove && !isStunned)
+        movements.InputHandler();
+        
+        if (!isStunned)
         {
-            direction.x = Input.GetAxisRaw("Horizontal");
-            direction.y = Input.GetAxisRaw("Vertical");
-            direction.Normalize();
-
-
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = transform.position.z;
 
@@ -96,15 +89,12 @@ public class Player : MonoBehaviour
             }*/
         }
 
-        animator.SetFloat("speed", direction.magnitude);
+        animator.SetFloat("speed", movements.Direction.magnitude);
     }
 
     private void FixedUpdate()
     {
-        if (canMove && !isStunned)
-        {
-            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
-        }
+        movements.MovementsFU();
     }
 
     public WeaponClass GetWeapon(int index)

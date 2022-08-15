@@ -3721,6 +3721,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8936531293806728208, guid: eace4cef2cbf97b4dbe8c95f65910e8f, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8936531293806728208, guid: eace4cef2cbf97b4dbe8c95f65910e8f, type: 3}
+      propertyPath: frictionEV
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 448750153, guid: eace4cef2cbf97b4dbe8c95f65910e8f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3798,8 +3806,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2949567486875019959, guid: eace4cef2cbf97b4dbe8c95f65910e8f, type: 3}
-      propertyPath: m_Constraints
-      value: 4
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2949567486875019961, guid: eace4cef2cbf97b4dbe8c95f65910e8f, type: 3}
       propertyPath: speed
