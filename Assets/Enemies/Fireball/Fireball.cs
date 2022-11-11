@@ -32,7 +32,7 @@ public class Fireball : MonoBehaviour
         if (!other.CompareTag("Player") || isDestroyed)
             return;
         
-        other.gameObject.GetComponent<Player>().TakeDamage(0);
+        other.GetComponent<Player>().TakeDamage(damage);
         Destroy(gameObject);
     }
 }
